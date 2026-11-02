@@ -41,7 +41,8 @@ Put the folder "GalacticWarPvPMode" in your PA `client_mods` folder and enable i
 ## How was it made
 
 I had the idea and since I'm a little nooby coder. It's vibe-coded.
-I tested things, pointed in the direction and Claude did what Claude did.
+
+I tested things, pointed in the direction where bugs where at and Claude did Claude things.
 
 ## License
 
