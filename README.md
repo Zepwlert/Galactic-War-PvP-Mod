@@ -1,9 +1,9 @@
 # Galactic War PvP Mode
 
-A Planetary Annihilation: Titans client mod by **Zepwlert**. It turns Galactic War co-op into a PvP skirmish:
-players pick cards in turn, then fight each other in the battles.
+It turns Galactic War co-op into a PvP skirmish:
+players pick cards, then fight each other in the battles.
 
-Requires Galactic War Overhaul (GWO, `com.pa.quitch.gwaioverhaul`) and Zep's Chaotic Galactic War Cards (ZGWC, `com.pa.Zepwlert.ZepsChaoticGalacticWarCards`), both declared as dependencies in `modinfo.json`.
+Requires Galactic War Overhaul (GWO, `com.pa.quitch.gwaioverhaul`)
 
 ## Features
 
@@ -11,44 +11,32 @@ Requires Galactic War Overhaul (GWO, `com.pa.quitch.gwaioverhaul`) and Zep's Cha
   cards shown per deal (1-5) and number of battles.
 - **A line of systems**: the start, one system per card pick, then the battle systems.
 - **Per-player cards**: every player is dealt the amount of cards the host set (viewers included).
-- **Hostile armies**: human players start every battle as enemies (free for all) or in two teams.
-- **Idle AI**: one AI army stays, with no income and a commander without orders or weapons. The battle server
-  crashes when no AI army exists, so one has to remain.
-- **Colours**: each player picks one of 12 colours on the commander/loadout screen. Clashes move the later player
-  to the next free colour.
-- **Win condition**: the last human standing gets "victory", everyone else "annihilated". Killing the AI does not end the match.
+- **PvP**: players start every battle as enemies (free for all) or in two teams.
+- **Idle AI**: one AI army stays, with no income and a commander without orders or weapons. This is required since it'll crash otherwise.
+- **Colours**: each player picks one of 12 colours on the commander/loadout screen. If one is taken already it picks a free one.
+- **Win condition**: the last player standing gets "victory", everyone else "annihilated". Killing the AI does not end the match.
 - **Debug box** (host option, off by default; centre-left of the Galactic War screen, click to hide) showing what the mod did, with buttons to
   test "AI active" or "ordinary battle".
 
 ## Install
 
-Copy this folder's contents so that `ui/mods/com.pa.Zepwlert.GalacticWarPvPMode/` and `modinfo.json` end up in a
-folder in your PA `client_mods` directory (for example `client_mods/com.pa.Zepwlert.GalacticWarPvPMode/`), then enable
-it in the in-game Community Mods menu. Every player in the lobby needs it.
+Requires [Galactic War Overhaul](https://github.com/Quitch/GW-AI-Overhaul) (`com.pa.quitch.gwaioverhaul`).
+
+Put the folder "GalacticWarPvPMode" in your PA `client_mods` folder and enable it in the in-game Community Mods menu. Every player that joins needs it.
 
 ## Use
 
-1. In Galactic War, start a co-op war and tick **PVP Skirmish** in the host panel.
+1. In Galactic War, start a co-op war and enable **PVP Skirmish** on the left side.
+2. Change the settings, how many card picks and how many cards per pick. Finally the amount of battles you want before the session ends. (You don't explore the planet upon completing a battle)
 2. Each player picks a colour on the commander screen, then cards.
-3. Launch the fight. Human armies are hostile; the AI sits idle.
+3. Launch the fight. PvP Enabled and the AI sits idle. (You do need to kill it for the game to end.)
 
-## Development
-
-Tests run in Chromium with Playwright against GW's real classes:
-
-```
-NODE_PATH=$(npm root -g) node tests/panel_test.js
-NODE_PATH=$(npm root -g) node tests/war_test.js
-NODE_PATH=$(npm root -g) node tests/play_test.js
-NODE_PATH=$(npm root -g) node tests/loadout_test.js
-```
-
-The game's embedded browser lacks `Object.assign`; keep the code free of it.
 
 ## Known limits
 
-- Tested with two players (host and one viewer).
-- Needs at least two human players.
+- Tested with two players (on free for all).
+- Needs at least two players, otherwise it's just a idle AI.
+- Team Deathmatch not tested yet.
 
 ## License
 
