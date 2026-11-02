@@ -2,7 +2,7 @@
 var path = require("path"), fs = require("fs"), assert = require("assert");
 var S = path.resolve(__dirname, "../../"), MOD = path.resolve(__dirname, "../ui/mods/com.pa.Zepwlert.GalacticWarPvPMode/gw_start/");
 var settings = require(MOD + "/mpo_settings.js");
-assert.deepEqual(settings.sanitize({}), { pvp: false, cardPicks: 5, cardsShown: 3, battles: 3, color: 0, mode: "ffa", noAI: false, noGuardians: false, noSubCommanders: false });
+assert.deepEqual(settings.sanitize({}), { pvp: false, debug: false, cardPicks: 5, cardsShown: 3, battles: 3, color: 0, mode: "ffa", noAI: false, noGuardians: false, noSubCommanders: false });
 var s = settings.sanitize({ pvp: true, cardPicks: 99, cardsShown: 0, battles: "x", mode: "bad" });
 assert.deepEqual([s.cardPicks, s.cardsShown, s.battles, s.mode, s.noAI, s.noSubCommanders], [20, 1, 3, "ffa", true, true]);
 assert.equal(settings.sanitize({ cardPicks: 0 }).cardPicks, 1); assert.equal(settings.sanitize({ cardsShown: 5.4 }).cardsShown, 5);

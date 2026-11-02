@@ -16,7 +16,7 @@
   // Always returns a complete, in-range object, whatever it is given (old saves, typed junk).
   var sanitize = function (input) {
     input = input || {};
-    var out = { pvp: input.pvp === true };
+    var out = { pvp: input.pvp === true, debug: input.debug === true }; // debug: show the status box
     Object.keys(LIMITS).forEach(function (k) {
       out[k] = input[k] === undefined ? LIMITS[k].def : clamp(input[k], LIMITS[k]);
     });

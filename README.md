@@ -17,7 +17,7 @@ Requires Galactic War Overhaul (GWO, `com.pa.quitch.gwaioverhaul`) and Zep's Cha
 - **Colours**: each player picks one of 12 colours on the commander/loadout screen. Clashes move the later player
   to the next free colour.
 - **Win condition**: the last human standing gets "victory", everyone else "annihilated". Killing the AI does not end the match.
-- **Status box** (centre-left of the Galactic War screen, click to hide) showing what the mod did, with buttons to
+- **Debug box** (host option, off by default; centre-left of the Galactic War screen, click to hide) showing what the mod did, with buttons to
   test "AI active" or "ordinary battle".
 
 ## Install

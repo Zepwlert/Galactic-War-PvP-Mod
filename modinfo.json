@@ -4,7 +4,7 @@
   "display_name": "Galactic War PvP Mode",
   "description": "Turns Galactic War co-op into a PvP skirmish: a line of systems (card picks, then battles), per-player cards, hostile human armies, per-player colours, and an idle AI so the battle server keeps running.",
   "author": "Zepwlert",
-  "version": "0.9.2",
+  "version": "0.9.3",
   "date": "2026-11-02",
   "signature": " ",
   "priority": 200,

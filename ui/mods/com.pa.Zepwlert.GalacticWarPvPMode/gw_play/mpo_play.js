@@ -11,6 +11,9 @@
     console.log("[Galactic War PvP Mode] " + msg);
     try {
       if (!force && !W.active()) return;
+      // The box is the host's debug tool: shown only when "Debug box" was ticked on the start screen.
+      var g = model.game && model.game(), c = g && W.readGame(g);
+      if (!(c && c.debug)) { if (box) box.style.display = "none"; return; }
       lines.push(msg);
       if (lines.length > 12) lines.shift();
       if (!box) {
@@ -57,7 +60,7 @@
       var d = "";
       try { d += "\nlast launch: " + (localStorage.getItem("mpo_launch") || "none"); } catch (e) {}
       try { d += "\nstart-screen log: " + (localStorage.getItem("mpo_diag") || "empty"); } catch (e) {}
-      note("PvP Mode v0.9.0 loaded. PvP war: " + (W.readGame(game) ? "YES" : "NO") + ". " + why + d, true);
+      note("PvP Mode loaded. PvP war: " + (W.readGame(game) ? "YES" : "NO") + ". " + why + d, true);
     }, 200);
   });
 

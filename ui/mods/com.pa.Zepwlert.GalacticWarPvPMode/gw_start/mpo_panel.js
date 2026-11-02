@@ -32,11 +32,12 @@
       cardsShown: numeric("cardsShown"),
       battles: numeric("battles"),
       color: ko.observable(saved.color),
+      debug: ko.observable(saved.debug),
       palette: window.mpoWar.PALETTE.map(function (c, i) { return { name: c.name, css: "rgb(" + c.rgb.join(",") + ")", index: i }; }),
     };
     mpo.pick = function (swatch) { mpo.color(swatch.index); };
     mpo.value = ko.computed(function () {
-      return S.sanitize({ pvp: mpo.pvp(), mode: mpo.mode(), cardPicks: mpo.cardPicks(), cardsShown: mpo.cardsShown(), battles: mpo.battles(), color: mpo.color() });
+      return S.sanitize({ pvp: mpo.pvp(), mode: mpo.mode(), cardPicks: mpo.cardPicks(), cardsShown: mpo.cardsShown(), battles: mpo.battles(), color: mpo.color(), debug: mpo.debug() });
     });
     mpo.value.subscribe(save);
     model.mpo = mpo;
@@ -54,6 +55,7 @@
       '<div class="mpo-swatches" data-bind="foreach: mpo.palette">' +
       '<span class="mpo-swatch" data-bind="style: { background: css }, attr: { title: name }, css: { picked: $root.mpo.color() === index }, click: $root.mpo.pick"></span>' +
       "</div>" +
+      '<label class="mpo-row"><span><loc>Debug box</loc></span><input id="mpo-debug" type="checkbox" data-bind="checked: mpo.debug"/></label>' +
       '<div class="mpo-note"><loc>One line of systems, sized by picks + battles (galaxy size is ignored). No AI, Guardians, Sub or Lucky Commander, rerolls or Data Bank picks. Needs two or more players.</loc></div>' +
       "</div></div>";
     $(".coop-setup-panel").first().after(html);
