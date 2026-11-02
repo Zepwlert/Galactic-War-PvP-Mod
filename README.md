@@ -44,6 +44,8 @@ I had the idea and since I'm a little nooby coder. It's vibe-coded.
 
 I tested things, pointed in the direction where bugs were at and Claude did Claude things.
 
+Finally I had my big bro pro coder nerd look at it and he said: "yea, it's aight." (although the code style hurt him a little bit on the inside)
+
 ## License
 
 MIT, see `LICENSE`.
