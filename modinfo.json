@@ -1,0 +1,42 @@
+{
+  "context": "client",
+  "identifier": "com.pa.Zepwlert.GalacticWarPvPMode",
+  "display_name": "Galactic War PvP Mode",
+  "description": "Turns Galactic War co-op into a PvP skirmish: a line of systems (card picks, then battles), per-player cards, hostile human armies, per-player colours, and an idle AI so the battle server keeps running.",
+  "author": "Zepwlert",
+  "version": "0.9.2",
+  "date": "2026-11-02",
+  "signature": " ",
+  "priority": 200,
+  "enabled": true,
+  "category": [
+    "gameplay",
+    "gw",
+    "gwo"
+  ],
+  "scenes": {
+    "gw_start": [
+      "coui://ui/mods/com.pa.Zepwlert.GalacticWarPvPMode/gw_start/mpo_settings.js",
+      "coui://ui/mods/com.pa.Zepwlert.GalacticWarPvPMode/gw_start/mpo_war.js",
+      "coui://ui/mods/com.pa.Zepwlert.GalacticWarPvPMode/gw_start/mpo_cards.js",
+      "coui://ui/mods/com.pa.Zepwlert.GalacticWarPvPMode/gw_start/mpo_panel.css",
+      "coui://ui/mods/com.pa.Zepwlert.GalacticWarPvPMode/gw_start/mpo_panel.js",
+      "coui://ui/mods/com.pa.Zepwlert.GalacticWarPvPMode/gw_start/mpo_start.js"
+    ],
+    "gw_play": [
+      "coui://ui/mods/com.pa.Zepwlert.GalacticWarPvPMode/gw_start/mpo_war.js",
+      "coui://ui/mods/com.pa.Zepwlert.GalacticWarPvPMode/gw_start/mpo_referee.js",
+      "coui://ui/mods/com.pa.Zepwlert.GalacticWarPvPMode/gw_start/mpo_cards.js",
+      "coui://ui/mods/com.pa.Zepwlert.GalacticWarPvPMode/gw_play/mpo_play.js"
+    ],
+    "gw_coop_per_player_loadout": [
+      "coui://ui/mods/com.pa.Zepwlert.GalacticWarPvPMode/gw_start/mpo_war.js",
+      "coui://ui/mods/com.pa.Zepwlert.GalacticWarPvPMode/gw_start/mpo_cards.js",
+      "coui://ui/mods/com.pa.Zepwlert.GalacticWarPvPMode/gw_coop_per_player_loadout/mpo_loadout.js"
+    ]
+  },
+  "dependencies": [
+    "com.pa.quitch.gwaioverhaul",
+    "com.pa.Zepwlert.ZepsChaoticGalacticWarCards"
+  ]
+}

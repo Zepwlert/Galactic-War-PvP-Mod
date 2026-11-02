@@ -1,4 +1,3 @@
-[README.md](https://github.com/user-attachments/files/34288173/README.md)
 # Galactic War PvP Mode
 
 A Planetary Annihilation: Titans client mod by **Zepwlert**. It turns Galactic War co-op into a PvP skirmish:
