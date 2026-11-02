@@ -4,7 +4,7 @@
   "display_name": "Galactic War PvP Mode",
   "description": "Turns Galactic War co-op into a PvP skirmish: a line of systems (card picks, then battles), per-player cards, hostile human armies, per-player colours, and an idle AI so the battle server keeps running.",
   "author": "Zepwlert",
-  "version": "0.9.3",
+  "version": "0.9.4",
   "date": "2026-11-02",
   "signature": " ",
   "priority": 200,
@@ -14,6 +14,7 @@
     "gw",
     "gwo"
   ],
+  "icon": "https://raw.githubusercontent.com/Zepwlert/Galactic-War-PvP-Mod/refs/heads/main/Pvp.png",
   "scenes": {
     "gw_start": [
       "coui://ui/mods/com.pa.Zepwlert.GalacticWarPvPMode/gw_start/mpo_settings.js",
@@ -36,7 +37,6 @@
     ]
   },
   "dependencies": [
-    "com.pa.quitch.gwaioverhaul",
-    "com.pa.Zepwlert.ZepsChaoticGalacticWarCards"
+    "com.pa.quitch.gwaioverhaul"
   ]
 }
