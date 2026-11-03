@@ -1,7 +1,7 @@
 // NODE_PATH=$(npm root -g) node tests/war_test.js
 // Runs GW's real galaxy/star/inventory/game classes in Chromium with the mod's transform and play hooks.
 var path = require("path"), fs = require("fs"), assert = require("assert");
-var S = path.resolve(__dirname, "../../"), MOD = path.resolve(__dirname, "../ui/mods/com.pa.Zepwlert.GalacticWarPvPMode/");
+var S = path.resolve(__dirname, "../../"), MOD = path.resolve(__dirname, "../ui/mods/com.pa.zepwlert.galacticwarpvpmode/");
 var TP = path.join(S, "ui_main/26256781-js/js/thirdparty/"), GWJ = path.join(S, "ui_main/game/game/galactic_war/shared/js/");
 var pw = require("playwright");
 (async function () {
@@ -165,10 +165,13 @@ var pw = require("playwright");
     var R = window.__reg, inv = new R["shared/gw_inventory"](); inv.setTag("global", "mpo", { pvp: true, cardPicks: 7 });
     R["cards/gwc_start"].buff(inv); var a = inv.maxCards();
     var inv2 = new R["shared/gw_inventory"](); R["cards/gwc_start"].buff(inv2); var b = inv2.maxCards();
-    var inv3 = new R["shared/gw_inventory"](); inv3.setTag("global", "mpo", { pvp: true, cardPicks: 7 }); R["cards/gwaio_start_backpacker"].buff(inv3); R["cards/gwc_start_combatcdr"].buff(inv3);
-    return [a, b, inv3.maxCards()];
+    var inv3 = new R["shared/gw_inventory"](); inv3.setTag("global", "mpo", { pvp: true, cardPicks: 7 }); R["cards/gwaio_start_backpacker"].buff(inv3);
+    var inv4 = new R["shared/gw_inventory"](); inv4.setTag("global", "mpo", { pvp: true, cardPicks: 7 }); R["cards/gwc_start_combatcdr"].buff(inv4);
+    var blocked = ["gwc_start_combatcdr", "gwaio_start_backpacker"].map(function (id) { return R["cards/" + id].deal ? R["cards/" + id].deal(null, null, inv3).chance : "nodeal"; });
+    return [a, b, inv3.maxCards(), inv4.maxCards(), blocked];
   });
-  assert.deepEqual(slots, [8, 9, 0]); console.log("slots ok");
+  // Backpacker keeps its own extra slots; Combat Commander never leaves fewer slots than the picks (+1) need.
+  assert.deepEqual(slots.slice(0, 4), [8, 9, 12, 8]); console.log("slots ok");
   var R2 = require(path.join(MOD, "gw_start/mpo_referee.js"));
   var cfgA = { armies: [{ slots: [{ name: "A" }] }, { slots: [{ name: "B" }] }, { slots: [{ name: "ai", ai: true }] }, { slots: [{ name: "C" }] }, { slots: [{ ai: true }] }] };
   var res = R2.toPvp(JSON.parse(JSON.stringify(cfgA)), { mode: "ffa" }, "remove"); assert(res.ok && res.humans === 3);

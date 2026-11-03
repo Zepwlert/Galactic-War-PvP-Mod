@@ -1,6 +1,6 @@
 // NODE_PATH=$(npm root -g) node tests/panel_test.js
 var path = require("path"), fs = require("fs"), assert = require("assert");
-var S = path.resolve(__dirname, "../../"), MOD = path.resolve(__dirname, "../ui/mods/com.pa.Zepwlert.GalacticWarPvPMode/gw_start/");
+var S = path.resolve(__dirname, "../../"), MOD = path.resolve(__dirname, "../ui/mods/com.pa.zepwlert.galacticwarpvpmode/gw_start/");
 var settings = require(MOD + "/mpo_settings.js");
 assert.deepEqual(settings.sanitize({}), { pvp: false, debug: false, cardPicks: 5, cardsShown: 3, battles: 3, color: 0, mode: "ffa", noAI: false, noGuardians: false, noSubCommanders: false });
 var s = settings.sanitize({ pvp: true, cardPicks: 99, cardsShown: 0, battles: "x", mode: "bad" });
@@ -15,7 +15,7 @@ var pw = require("playwright"), TP = path.join(S, "ui_main/26256781-js/js/thirdp
   await p.goto("http://gw.test/");
   await p.addScriptTag({ path: TP + "jquery-2.1.4.js" }); await p.addScriptTag({ path: TP + "lodash-3.9.3.js" }); await p.addScriptTag({ path: TP + "knockout-3.4.0.min.js" });
   await p.evaluate(function () {
-    var mk = function (id) { var c = { id: function () { return id; }, hits: 0 }; c.activate = function () { c.hits++; }; c.btnClass = ko.observable('btn'); return c; }; window.__cards = [mk('gwc_start_subcdr'), mk('gwc_start_air')]; window.requireGW = function (ids, ok) { ok({ balance: { numberOfSystems: [18, 24, 36, 54, 78] } }); }; window.model = { draftNewGamePerPlayerTechCards: ko.observable(false), gwoDraftPerPlayerRace: ko.observable(false), gwoDifficultySettings: { perPlayerRace: ko.observable(false) }, newGameSizeIndex: ko.observable(1), newGamePerPlayerTechCards: ko.observable(false), newGameSharedByDefault: ko.observable(true), newGameCoopPlayers: ko.observable('1'), newGame: ko.observable(), startCards: ko.observableArray(window.__cards), activeStartCardIndex: ko.observable(0), activeStartCard: function () { return window.__cards[window.model.activeStartCardIndex()]; } }; window.__tags = [];
+    var mk = function (id) { var c = { id: function () { return id; }, hits: 0 }; c.activate = function () { c.hits++; }; c.btnClass = ko.observable('btn'); return c; }; window.__cards = [mk('gwc_start_subcdr'), mk('gwc_start_air'), mk('gwc_start_combatcdr'), mk('gwaio_start_backpacker')]; window.requireGW = function (ids, ok) { ok({ balance: { numberOfSystems: [18, 24, 36, 54, 78] } }); }; window.model = { draftNewGamePerPlayerTechCards: ko.observable(false), gwoDraftPerPlayerRace: ko.observable(false), gwoDifficultySettings: { perPlayerRace: ko.observable(false) }, newGameSizeIndex: ko.observable(1), newGamePerPlayerTechCards: ko.observable(false), newGameSharedByDefault: ko.observable(true), newGameCoopPlayers: ko.observable('1'), newGame: ko.observable(), startCards: ko.observableArray(window.__cards), activeStartCardIndex: ko.observable(0), activeStartCard: function () { return window.__cards[window.model.activeStartCardIndex()]; } }; window.__tags = [];
     window.__game = function () { return { inventory: function () { return { setTag: function (c, n, v) { window.__tags.push([c, n, v]); } }; } }; };
   });
   await p.addScriptTag({ path: MOD + "/mpo_settings.js" }); await p.addScriptTag({ path: MOD + "/mpo_war.js" }); await p.addStyleTag({ path: MOD + "/mpo_panel.css" }); await p.addScriptTag({ path: MOD + "/mpo_panel.js" });
@@ -31,6 +31,8 @@ var pw = require("playwright"), TP = path.join(S, "ui_main/26256781-js/js/thirdp
   await p.fill("#mpo-shown", "0"); await p.press("#mpo-shown", "Tab"); assert.equal(await p.inputValue("#mpo-shown"), "1");
   var sub = await p.evaluate(function () { var c = window.__cards[0]; c.activate(); return { hits: c.hits, cls: c.btnClass(), active: window.model.activeStartCardIndex() }; });
   assert.equal(sub.hits, 0); assert(/gwo-race-locked/.test(sub.cls)); assert.equal(sub.active, 1);
+  var more = await p.evaluate(function () { return [2, 3].map(function (i) { var c = window.__cards[i]; c.activate(); return [c.hits, /gwo-race-locked/.test(c.btnClass())]; }); });
+  assert.deepEqual(more, [[0, true], [0, true]], "Combat and Backpacker Commander locked in PvP");
   await p.uncheck("#mpo-pvp"); var back = await p.evaluate(function () { var c = window.__cards[0]; c.activate(); return { hits: c.hits, cls: c.btnClass() }; });
   assert.equal(back.hits, 1); assert(!/locked/.test(back.cls)); await p.check("#mpo-pvp");
   // size, per-player tech and players are forced while PVP is on (picks 5 + battles 3 -> smallest size)

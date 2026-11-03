@@ -1,43 +1,46 @@
 {
   "context": "client",
-  "identifier": "com.pa.Zepwlert.GalacticWarPvPMode",
+  "identifier": "com.pa.zepwlert.galacticwarpvpmode",
   "display_name": "Galactic War PvP Mode",
-  "description": "Turns Galactic War co-op into a PvP skirmish: a line of systems (card picks, then battles), per-player cards, hostile human armies, per-player colours, and an idle AI so the battle server keeps running.",
+  "description": "Galactic War PvP mode, fight your friends instead of AI.",
   "author": "Zepwlert",
-  "version": "0.9.4",
-  "date": "2026-11-02",
+  "version": "0.9.5",
+  "date": "2026-11-03",
   "signature": " ",
   "forum": "https://github.com/Zepwlert/Galactic-War-PvP-Mod/discussions/1",
   "priority": 200,
   "enabled": true,
   "category": [
+    "titans",
     "gameplay",
     "gw",
     "gwo"
   ],
-  "icon": "https://raw.githubusercontent.com/Zepwlert/Galactic-War-PvP-Mod/refs/heads/main/Pvp.png",
+  "icon": "https://raw.githubusercontent.com/Zepwlert/Galactic-War-PvP-Mod/refs/heads/main/pvp.png",
   "scenes": {
     "gw_start": [
-      "coui://ui/mods/com.pa.Zepwlert.GalacticWarPvPMode/gw_start/mpo_settings.js",
-      "coui://ui/mods/com.pa.Zepwlert.GalacticWarPvPMode/gw_start/mpo_war.js",
-      "coui://ui/mods/com.pa.Zepwlert.GalacticWarPvPMode/gw_start/mpo_cards.js",
-      "coui://ui/mods/com.pa.Zepwlert.GalacticWarPvPMode/gw_start/mpo_panel.css",
-      "coui://ui/mods/com.pa.Zepwlert.GalacticWarPvPMode/gw_start/mpo_panel.js",
-      "coui://ui/mods/com.pa.Zepwlert.GalacticWarPvPMode/gw_start/mpo_start.js"
+      "coui://ui/mods/com.pa.zepwlert.galacticwarpvpmode/gw_start/mpo_settings.js",
+      "coui://ui/mods/com.pa.zepwlert.galacticwarpvpmode/gw_start/mpo_war.js",
+      "coui://ui/mods/com.pa.zepwlert.galacticwarpvpmode/gw_start/mpo_cards.js",
+      "coui://ui/mods/com.pa.zepwlert.galacticwarpvpmode/gw_start/mpo_panel.css",
+      "coui://ui/mods/com.pa.zepwlert.galacticwarpvpmode/gw_start/mpo_panel.js",
+      "coui://ui/mods/com.pa.zepwlert.galacticwarpvpmode/gw_start/mpo_start.js"
     ],
     "gw_play": [
-      "coui://ui/mods/com.pa.Zepwlert.GalacticWarPvPMode/gw_start/mpo_war.js",
-      "coui://ui/mods/com.pa.Zepwlert.GalacticWarPvPMode/gw_start/mpo_referee.js",
-      "coui://ui/mods/com.pa.Zepwlert.GalacticWarPvPMode/gw_start/mpo_cards.js",
-      "coui://ui/mods/com.pa.Zepwlert.GalacticWarPvPMode/gw_play/mpo_play.js"
+      "coui://ui/mods/com.pa.zepwlert.galacticwarpvpmode/gw_start/mpo_war.js",
+      "coui://ui/mods/com.pa.zepwlert.galacticwarpvpmode/gw_start/mpo_referee.js",
+      "coui://ui/mods/com.pa.zepwlert.galacticwarpvpmode/gw_start/mpo_cards.js",
+      "coui://ui/mods/com.pa.zepwlert.galacticwarpvpmode/gw_play/mpo_play.js"
     ],
     "gw_coop_per_player_loadout": [
-      "coui://ui/mods/com.pa.Zepwlert.GalacticWarPvPMode/gw_start/mpo_war.js",
-      "coui://ui/mods/com.pa.Zepwlert.GalacticWarPvPMode/gw_start/mpo_cards.js",
-      "coui://ui/mods/com.pa.Zepwlert.GalacticWarPvPMode/gw_coop_per_player_loadout/mpo_loadout.js"
+      "coui://ui/mods/com.pa.zepwlert.galacticwarpvpmode/gw_start/mpo_war.js",
+      "coui://ui/mods/com.pa.zepwlert.galacticwarpvpmode/gw_start/mpo_cards.js",
+      "coui://ui/mods/com.pa.zepwlert.galacticwarpvpmode/gw_coop_per_player_loadout/mpo_loadout.js"
     ]
   },
   "dependencies": [
     "com.pa.quitch.gwaioverhaul"
-  ]
+  ],
+  "build": "124685",
+  "titansOnly": true
 }

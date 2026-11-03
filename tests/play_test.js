@@ -1,6 +1,6 @@
 // Launch hooks of mpo_play.js with stand-in GW modules.
 var fs = require("fs"), path = require("path");
-var base = path.join(__dirname, "../ui/mods/com.pa.Zepwlert.GalacticWarPvPMode/");
+var base = path.join(__dirname, "../ui/mods/com.pa.zepwlert.galacticwarpvpmode/");
 var els = [];
 global.window = global;
 global.document = { createElement: function () { return { style: {} }; }, body: { appendChild: function (e) { els.push(e); } } };
@@ -27,5 +27,13 @@ subs.forEach(function (f) { f(true); });
 // the hire path first, then mountFiles with no per-player step having run
 mods["pages/gw_play/gw_referee"].hire().then(function (r) { r.mountFiles(); });
 var ok = mounted && config.armies.length === 3 && config.armies[0].alliance_group !== config.armies[1].alliance_group && config.armies[2].econ_rate === 0 && config.mpo_pvp;
-console.error(ok ? "play ok" : "play FAILED " + JSON.stringify(config));
-process.exit(ok ? 0 : 1);
+// The test variant stored by the debug box only counts while the war has "Debug box" on.
+var fresh = function () { return { armies: [
+  { slots: [{ name: "A" }], alliance_group: 1 }, { slots: [{ name: "B" }], alliance_group: 1 },
+  { slots: [{ ai: true, name: "Enemy" }], alliance_group: 2 }, { slots: [{ ai: true, name: "Sub" }], alliance_group: 1 } ] }; };
+global.localStorage = { getItem: function (k) { return k === "mpo_variant" ? "off" : null; }, setItem: function () {} };
+var trial = function (debug) { config = fresh(); settings.debug = debug; mods["pages/gw_play/gw_referee"].hire().then(function (r) { r.mountFiles(); }); return config; };
+var offIgnored = trial(false); var offHonoured = trial(true);
+var ok2 = offIgnored.armies.length === 3 && offHonoured.armies.length === 4;
+console.error(ok && ok2 ? "play ok" : "play FAILED " + JSON.stringify([ok, ok2, offIgnored.armies.length, offHonoured.armies.length]));
+process.exit(ok && ok2 ? 0 : 1);
