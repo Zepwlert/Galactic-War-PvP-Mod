@@ -45,15 +45,6 @@ Finally I had my big bro pro coder nerd look at it and he said: "yea, it's aight
 
 ## Development
 
-Tests run in Chromium with Playwright against stand-ins for GW's classes:
-
-```
-NODE_PATH=$(npm root -g) node tests/panel_test.js
-NODE_PATH=$(npm root -g) node tests/war_test.js
-NODE_PATH=$(npm root -g) node tests/play_test.js
-NODE_PATH=$(npm root -g) node tests/loadout_test.js
-```
-
 The game's embedded browser lacks `Object.assign` and CSS `gap` in flex layouts; keep the code free of both.
 
 ## License
